@@ -1,0 +1,37 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: osx-64
+@EXPLICIT
+https://repo.anaconda.com/pkgs/main/osx-64/ca-certificates-2021.10.26-hecd8cb5_2.conda
+https://repo.anaconda.com/pkgs/main/osx-64/libcxx-12.0.0-h2f01273_0.conda
+https://repo.anaconda.com/pkgs/main/osx-64/ncurses-6.3-hca72f7f_2.conda
+https://repo.anaconda.com/pkgs/main/osx-64/xz-5.2.5-h1de35cc_0.conda
+https://repo.anaconda.com/pkgs/main/osx-64/zlib-1.2.11-h1de35cc_3.conda
+https://conda.anaconda.org/anaconda/osx-64/libedit-3.1.20191231-h1de35cc_1.tar.bz2
+https://repo.anaconda.com/pkgs/main/osx-64/libffi-3.3-hb1e8313_2.conda
+https://repo.anaconda.com/pkgs/main/osx-64/openssl-1.1.1l-h9ed2024_0.conda
+https://repo.anaconda.com/pkgs/main/osx-64/readline-8.1-h9ed2024_0.conda
+https://repo.anaconda.com/pkgs/main/osx-64/tk-8.6.11-h7bc2e8c_0.conda
+https://conda.anaconda.org/anaconda/osx-64/krb5-1.17.1-hddcf347_0.tar.bz2
+https://repo.anaconda.com/pkgs/main/osx-64/sqlite-3.36.0-hce871da_0.conda
+https://conda.anaconda.org/anaconda/osx-64/libpq-12.2-h051b688_0.tar.bz2
+https://repo.anaconda.com/pkgs/main/osx-64/python-3.7.11-h88f2d9e_0.conda
+https://repo.anaconda.com/pkgs/main/noarch/appdirs-1.4.4-pyhd3eb1b0_0.conda
+https://conda.anaconda.org/anaconda/noarch/asgiref-3.3.0-py_0.tar.bz2
+https://repo.anaconda.com/pkgs/main/noarch/attrs-21.2.0-pyhd3eb1b0_0.conda
+https://repo.anaconda.com/pkgs/main/osx-64/certifi-2021.10.8-py37hecd8cb5_0.conda
+https://repo.anaconda.com/pkgs/main/noarch/click-8.0.3-pyhd3eb1b0_0.conda
+https://repo.anaconda.com/pkgs/main/osx-64/mypy_extensions-0.4.3-py37_0.conda
+https://repo.anaconda.com/pkgs/main/noarch/pathspec-0.7.0-py_0.conda
+https://conda.anaconda.org/anaconda/osx-64/psycopg2-2.8.5-py37hddc9c9b_0.tar.bz2
+https://conda.anaconda.org/anaconda/noarch/pytz-2020.1-py_0.tar.bz2
+https://repo.anaconda.com/pkgs/main/osx-64/regex-2021.8.3-py37h9ed2024_0.conda
+https://conda.anaconda.org/anaconda/noarch/sqlparse-0.4.1-py_0.tar.bz2
+https://repo.anaconda.com/pkgs/main/noarch/toml-0.10.2-pyhd3eb1b0_0.conda
+https://repo.anaconda.com/pkgs/main/osx-64/typed-ast-1.4.3-py37h9ed2024_1.conda
+https://repo.anaconda.com/pkgs/main/noarch/typing_extensions-3.10.0.2-pyh06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/noarch/wheel-0.37.0-pyhd3eb1b0_1.conda
+https://repo.anaconda.com/pkgs/main/noarch/black-19.10b0-py_0.conda
+https://conda.anaconda.org/anaconda/noarch/django-3.1.2-py_0.tar.bz2
+https://repo.anaconda.com/pkgs/main/osx-64/setuptools-58.0.4-py37hecd8cb5_0.conda
+https://repo.anaconda.com/pkgs/main/osx-64/pip-21.2.2-py37hecd8cb5_0.conda

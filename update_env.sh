@@ -1,4 +1,3 @@
 #!/bin/sh
-source tutor/bin/activate
-pip freeze > requirements.txt
-echo "venv updated."
+conda list --explicit > conda-req.txt
+
