@@ -1,0 +1,15 @@
+{% extends "scheduler/base.html" %}
+{% block content %}
+{% for session in sessions %}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">{{ session.author }}</a>
+            <small class="text-muted">{{ session.date_posted|date:"F d, Y" }}</small>
+        </div>
+        <h2><a class="article-title" href="#">{{ session.title }}</a></h2>
+        <p class="article-content">{{ session.content }}</p>
+    </div>
+</article>
+{% endfor %}
+{% endblock content %}

@@ -1,0 +1,52 @@
+{% extends "scheduler/base.html" %}
+{% block content %}
+<h1>Report Issues</h1>
+<!-- It is assumed that a POST route exists for the same URL from which this file is served. Modify the action attribute to the desired URL -->
+<form method='POST' action='./'>
+    <p>We apologise for the inconvenience. Please describe the issue you are facing and we will get back to you with a
+        fix.
+    </p>
+    <fieldset>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Describe the issue here</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">OS(Operating System)</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option>macOS</option>
+                <option>Windows</option>
+                <option>Linux</option>
+                <option>iOS</option>
+                <option>Andriod</option>
+                <option>Other (Please describe in the issue)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Browser</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option>Google Chrome</option>
+                <option>Safari</option>
+                <option>Firefox</option>
+                <option>Internet Explorer</option>
+                <option>Other (Please describe in the issue)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlFile1">Screenshots (if applicable)</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+    </fieldset>
+    <input type="hidden" id="client-info" name="client-info" value=''>
+    <noscript>
+        <input type="hidden" id="javascript-disabled" name="javascript-disabled" value="true">
+    </noscript>
+    <button type="button" class="btn btn-outline-success btn-lg">Submit Report</button>
+</form>
+{% endblock content %}
