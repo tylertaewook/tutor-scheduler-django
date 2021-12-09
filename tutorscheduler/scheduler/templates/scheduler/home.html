@@ -1,0 +1,20 @@
+{% extends "scheduler/base.html" %}
+{% block content %}
+{% for day in days %}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">{{ day.day }}</a>
+            <small class="text-muted">{{ day.dept }}</small>
+        </div>
+        <h2><a class="article-title" href="#">{{ day.onduty }}</a></h2>
+        <p class="article-content">{{ day.desc }}</p>
+        <button type="button" class="btn btn-outline-success btn-lg btn-block">8:00-8:20</button>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" disabled>Booked</button>
+        <button type="button" class="btn btn-outline-success btn-lg btn-block">9:00-9:20</button>
+        <button type="button" class="btn btn-outline-success btn-lg btn-block">9:20-9:40</button>
+        <button type="button" class="btn btn-outline-success btn-lg btn-block">9:40-10:00</button>
+    </div>
+</article>
+{% endfor %}
+{% endblock content %}
