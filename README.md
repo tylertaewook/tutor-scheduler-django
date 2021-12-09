@@ -8,3 +8,9 @@ WIP for Kent School's Academic Resource Center
 ### activate
 
 `$ conda activate <env_name>`
+
+### run dev server
+```
+$ cd tutorscheduler
+$ python manage.py runserver  
+```
