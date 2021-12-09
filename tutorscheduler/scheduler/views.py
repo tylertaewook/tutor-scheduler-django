@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Session
+from .forms import IssuesForm
+from django.contrib import messages
 
 days = [
     {
@@ -51,4 +53,13 @@ def sessions(request):
 
 
 def report_issues(request):
-    return render(request, "scheduler/report_issues.html")
+    if request.method == "POST":
+        form = IssuesForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f"Successfully reported issue!")
+            return redirect("scheduler-home")
+    else:  # displays empty form initially
+        form = IssuesForm()
+
+    return render(request, "scheduler/report_issues.html", {"form": form})
