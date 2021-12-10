@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from scheduler.models import Session
 from .forms import UserRegisterForm
 
 # TODO: setup o_auth to login with google feature
@@ -25,5 +26,7 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, "users/profile.html")
+    # TODO: only filter sessions made by current user
+    context = {"sessions": Session.objects.all()}
+    return render(request, "users/profile.html", context)
 

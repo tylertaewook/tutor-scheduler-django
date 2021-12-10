@@ -1,24 +1,35 @@
 {% extends "scheduler/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-<h1>{{ user.username }}</h1>
-<h3>Upcoming Sessions</h3>
-<div class="card bg-light mb-3" style="width: 18rem;">
-    <div class="card-header">Dec 25th, Saturday</div>
-    <div class="card-body">
-        <h5 class="card-title">8:20-8:40</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Mr. Brett Hand</h6>
-        <p class="card-text">Help with college essay</p>
-        <a href="#" class="btn btn-outline-danger">Cancel Session</a>
+<div class="content-section">
+    <h1>Hello, {{ user.username }}</h1>
+    <h3>Upcoming Sessions</h3>
+    {% for session in sessions %}
+    {% if session.is_upcoming %}
+    <div class="card bg-light mb-3" style="width: 18rem;">
+        <div class="card-header">{{ session.date|date:"F d - l" }}</div>
+        <div class="card-body">
+            <h5 class="card-title">{{ session.get_timeblock_display }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Mr. Brett Hand</h6>
+            <p class="card-text">{{ session.helptype }}</p>
+            <a href="#" class="btn btn-outline-danger">Cancel Session</a>
+        </div>
     </div>
-</div>
-<h3>Past Sessions</h3>
-<div class="card border-dark mb-3" style="width: 18rem;">
-    <div class="card-header">Dec 25th, Saturday</div>
-    <div class="card-body text-dark">
-        <h5 class="card-title">8:20-8:40</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Mr. Brett Hand</h6>
-        <p class="card-text">English term paper</p>
+    {% endif %}
+    {% endfor %}
+
+    <h3>Past Sessions</h3>
+    {% for session in sessions %}
+    {% if session.is_upcoming is False %}
+    <div class="card border-dark mb-3" style="width: 18rem;">
+        <div class="card-header">{{ session.date|date:"F d - l" }}</div>
+        <div class="card-body text-dark">
+            <h5 class="card-title">{{ session.get_timeblock_display }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Mr. Brett Hand</h6>
+            <p class="card-text">{{ session.helptype }}</p>
+        </div>
     </div>
+    {% endif %}
+    {% endfor %}
 </div>
 {% endblock content %}

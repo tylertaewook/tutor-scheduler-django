@@ -1,7 +1,7 @@
 from django import forms
 from django.db import models
 from django.utils import timezone
-from datetime import datetime
+from datetime import date, datetime
 from django.contrib.auth.models import User
 
 DAYS_OF_WEEK = (
@@ -14,24 +14,27 @@ DAYS_OF_WEEK = (
     (6, "Sunday"),
 )
 
-TIME_BLOCK = (
-    ("A", "8:00-8:20"),
-    ("B", "8:20-8:40"),
-    ("C", "8:40-9:00"),
-    ("D", "9:00-9:20"),
-    ("E", "9:20-9:40"),
-    ("F", "9:40-10:00"),
-)
-
 
 class Session(models.Model):
+    class Timeblock(models.TextChoices):
+        A = "1", "8:00-8:20"
+        B = "2", "8:20-8:40"
+        C = "3", "8:40-9:00"
+        D = "4", "9:00-9:20"
+        E = "5", "9:20-9:40"
+        F = "6", "9:40-10:00"
+
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
 
-    date = models.DateField(default=datetime.now)
-    timeblock = models.CharField(max_length=1, choices=TIME_BLOCK)
-
+    date = models.DateField()
+    timeblock = models.CharField(max_length=10, choices=Timeblock.choices)
+    # {{ session.get_timeblock_display }} to display full text
     helptype = models.CharField(max_length=50)
+
+    @property
+    def is_upcoming(self):
+        return date.today() < self.date
 
 
 class Teacher(models.Model):
