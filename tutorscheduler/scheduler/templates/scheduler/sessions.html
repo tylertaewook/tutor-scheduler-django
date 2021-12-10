@@ -4,11 +4,12 @@
 <article class="media content-section">
     <div class="media-body">
         <div class="article-metadata">
-            <a class="mr-2" href="#">{{ session.author }}</a>
+            <a class="mr-2" href="#">{{ session.student }}</a>
             <small class="text-muted">{{ session.date_posted|date:"F d, Y" }}</small>
         </div>
-        <h2><a class="article-title" href="#">{{ session.title }}</a></h2>
-        <p class="article-content">{{ session.content }}</p>
+        <h2><a class="article-title" href="#">{{ session.helptype }}</a></h2>
+        <p class="article-content">{{ session.notes }}</p>
+        <p class="article-content">{{ session.date|date:"l" }}</p>
     </div>
 </article>
 {% endfor %}
