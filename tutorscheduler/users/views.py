@@ -27,7 +27,10 @@ def register(request):
 @login_required
 def profile(request):
     # TODO: only filter sessions made by current user
-    context = {"sessions": Session.objects.all()}
+    context = {
+        "user_sessions": Session.objects.all(),
+        "teacher_sessions": Session.objects.all(),
+    }
     return render(request, "users/profile.html", context)
 
 

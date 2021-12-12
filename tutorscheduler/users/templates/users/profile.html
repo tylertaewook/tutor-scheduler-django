@@ -1,5 +1,6 @@
 {% extends "scheduler/base.html" %}
 {% load crispy_forms_tags %}
+{% load has_group %}
 {% block content %}
 <div class="content-section">
     <h2>My Profile</h2>
@@ -7,15 +8,38 @@
         <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
         <div class="media-body">
             <h2 class="account-heading">{{ user.username }}</h2>
+            {% if user|has_group:"teacher" %}
+            <p class="text-secondary">Teacher</p>
+            {% else %}
+            <p class="text-secondary">Student</p>
+            {% endif %}
             <p class="text-secondary">{{ user.email }}</p>
         </div>
     </div>
     <a href="{% url 'editprofile' %}">Edit my profile</a>
 </div>
 
+{% if user|has_group:"teacher" %}
+<div class="content-section">
+    <h3>My Sessions</h3>
+    {% for session in teacher_sessions %}
+    <article class="media content-section">
+        <img class='rounded-circle article-img' src="{{ session.student.profile.image.url }}">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">{{ session.student }}</a>
+                <small class="text-muted">{{ session.date|date:"F d - l" }}</small>
+            </div>
+            <h4><a class="article-title" href="#">{{ session.timeblock }}</a></h4>
+            <p class="article-content">{{ session.helptype }}</p>
+        </div>
+    </article>
+    {% endfor %}
+</div>
+{% else %}
 <div class="content-section">
     <h3>Upcoming Sessions</h3>
-    {% for session in sessions %}
+    {% for session in user_sessions %}
     {% if session.is_upcoming %}
     <div class="card bg-light mb-3" style="width: 18rem;">
         <div class="card-header">{{ session.date|date:"F d - l" }}</div>
@@ -30,7 +54,7 @@
     {% endfor %}
 
     <h3>Past Sessions</h3>
-    {% for session in sessions %}
+    {% for session in user_sessions %}
     {% if session.is_upcoming is False %}
     <div class="card border-dark mb-3" style="width: 18rem;">
         <div class="card-header">{{ session.date|date:"F d - l" }}</div>
@@ -43,4 +67,5 @@
     {% endif %}
     {% endfor %}
 </div>
+{% endif %}
 {% endblock content %}
