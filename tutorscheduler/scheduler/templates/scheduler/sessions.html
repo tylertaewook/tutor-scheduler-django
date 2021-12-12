@@ -2,6 +2,7 @@
 {% block content %}
 {% for session in sessions %}
 <article class="media content-section">
+    <img class='rounded-circle article-img' src="{{ session.student.profile.image.url }}">
     <div class="media-body">
         <div class="article-metadata">
             <a class="mr-2" href="#">{{ session.student }}</a>

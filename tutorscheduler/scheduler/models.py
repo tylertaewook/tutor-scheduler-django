@@ -17,12 +17,12 @@ DAYS_OF_WEEK = (
 
 class Session(models.Model):
     class Timeblock(models.TextChoices):
-        A = "1", "8:00-8:20"
-        B = "2", "8:20-8:40"
-        C = "3", "8:40-9:00"
-        D = "4", "9:00-9:20"
-        E = "5", "9:20-9:40"
-        F = "6", "9:40-10:00"
+        A = "8:00-8:20", "8:00-8:20"
+        B = "8:20-8:40", "8:20-8:40"
+        C = "8:40-9:00", "8:40-9:00"
+        D = "9:00-9:20", "9:00-9:20"
+        E = "9:20-9:40", "9:20-9:40"
+        F = "9:40-10:00", "9:40-10:00"
 
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
@@ -35,6 +35,9 @@ class Session(models.Model):
     @property
     def is_upcoming(self):
         return date.today() < self.date
+
+    def __str__(self) -> str:
+        return f"{self.student.username}: {self.date} ({self.timeblock})"
 
 
 class Teacher(models.Model):
