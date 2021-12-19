@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 from datetime import date, datetime
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 DAYS_OF_WEEK = (
     (0, "Monday"),
@@ -38,6 +39,10 @@ class Session(models.Model):
 
     def __str__(self) -> str:
         return f"{self.student.username}: {self.date} ({self.timeblock})"
+
+    def get_absolute_url(self):
+        # returns a complete url string and let view handle the redirect
+        return reverse("session-detail", kwargs={"pk": self.pk})
 
 
 class Teacher(models.Model):

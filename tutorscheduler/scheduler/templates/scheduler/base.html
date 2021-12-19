@@ -34,6 +34,7 @@
                     <div class="navbar-nav mr-auto">
                         <a class="nav-item nav-link" href="{% url 'scheduler-home' %}">Home</a>
                         <a class="nav-item nav-link" href="{% url 'scheduler-about' %}">About</a>
+                        <a class="nav-item nav-link" href="{% url 'scheduler-sessions' %}">Sessions</a>
                         <a class="nav-item nav-link" href="{% url 'scheduler-issues' %}">Report Issues</a>
                     </div>
                     <!-- Navbar Right Side -->
@@ -42,6 +43,7 @@
                         {% if user.is_superuser %}
                         <a class="nav-item nav-link" href="{% url 'admin:index' %}">Admin</a>
                         {% endif %}
+                        <a class="nav-item nav-link" href="{% url 'session-create' %}">New Session</a>
                         <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                         <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
                         {% else %}

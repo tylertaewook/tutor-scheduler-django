@@ -1,0 +1,21 @@
+{% extends "scheduler/base.html" %}
+{% block content %}
+
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">{{ object.student }}</a>
+            <small class="text-muted">{{ object.date|date:"F d, Y" }}</small>
+            {% if object.student == user %}
+            <div>
+                <a class='btn btn-secondary btn-small mt-1 mb-1' href="{% url 'session-edit' object.id %}">Edit</a>
+                <a class='btn btn-danger btn-small mt-1 mb-1' href="{% url 'session-cancel' object.id %}">Cancel</a>
+            </div>
+            {% endif %}
+        </div>
+        <h2 class="article-title">{{ object.helptype }}</h2>
+        <p class="article-content">{{ object.date|date:"l" }}</p>
+    </div>
+</article>
+
+{% endblock content %}
