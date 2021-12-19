@@ -2,7 +2,15 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from scheduler.models import Session
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 
 # TODO: setup o_auth to login with google feature
 # REF: https://www.section.io/engineering-education/django-google-oauth/
@@ -26,12 +34,38 @@ def register(request):
 
 @login_required
 def profile(request):
-    # TODO: only filter sessions made by current user
+    student = request.user
     context = {
-        "user_sessions": Session.objects.all(),
+        "user_sessions": Session.objects.filter(student=student),
         "teacher_sessions": Session.objects.all(),
     }
     return render(request, "users/profile.html", context)
+
+
+class SessionEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Session
+    fields = ["date", "timeblock", "helptype"]
+
+    def form_valid(self, form):
+        form.instance.student = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        session = self.get_object()
+        if self.request.user == session.student:
+            return True
+        return False
+
+
+class SessionCancelView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Session
+    success_url = "/"
+
+    def test_func(self):
+        session = self.get_object()
+        if self.request.user == session.student:
+            return True
+        return False
 
 
 @login_required
