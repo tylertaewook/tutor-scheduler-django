@@ -1,5 +1,5 @@
 # tutor-scheduler-django
-WIP for Kent School's Academic Resource Center
+A Django web app for scheduling peer tutor sessions in Kent School's Academic Resource Center; WIP
 
 ### conda env setup
 
