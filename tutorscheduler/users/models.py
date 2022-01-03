@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import Group, User
 from PIL import Image
 
 
@@ -19,3 +19,23 @@ class Profile(models.Model):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
+
+class Teacher(models.Model):
+    class Weekday(models.TextChoices):
+        # name, value, label
+        mon = 0, "Monday"
+        tue = 1, "Tuesday"
+        wed = 2, "Wednesday"
+        thu = 3, "Thursday"
+        fri = 4, "Friday"
+        sat = 5, "Saturday"
+        sun = 6, "Sunday"
+
+    teacher = models.ForeignKey(User, on_delete=models.CASCADE)
+    expertise = models.CharField(max_length=100)
+    assigned_day = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.assigned_day
+

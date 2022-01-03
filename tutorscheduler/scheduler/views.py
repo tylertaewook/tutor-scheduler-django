@@ -99,8 +99,7 @@ def home(request):
 
 
 def about(request):
-    context = {"days": days}
-    return render(request, "scheduler/about.html", context)
+    return render(request, "scheduler/about.html")
 
 
 def sessions(request):

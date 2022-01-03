@@ -8,11 +8,8 @@
         <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
         <div class="media-body">
             <h2 class="account-heading">{{ user.username }}</h2>
-            {% if user|has_group:"teacher" %}
-            <p class="text-secondary">Teacher</p>
-            {% else %}
-            <p class="text-secondary">Student</p>
-            {% endif %}
+            <p class="text-secondary">{{ user_group }}</p>
+            <p class="text-secondary">{{ user.email }}</p>
             <p class="text-secondary">{{ user.email }}</p>
         </div>
     </div>
@@ -42,10 +39,10 @@
     {% for session in user_sessions %}
     {% if session.is_upcoming %}
     <div class="card bg-light mb-3" style="width: 18rem;">
-        <div class="card-header">{{ session.date|date:"F d - l" }}</div>
+        <div class="card-header">{{ session.date|date:"F d [l]" }}</div>
         <div class="card-body">
             <h5 class="card-title">{{ session.get_timeblock_display }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Mr. Brett Hand</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{{ session.weekday }}</h6>
             <p class="card-text">{{ session.helptype }}</p>
             <a href="#" class="btn btn-outline-danger">Cancel Session</a>
         </div>
