@@ -1,29 +1,18 @@
 from django import forms
 from django.db import models
 from django.utils import timezone
-from datetime import date, datetime
+from datetime import date
 from django.contrib.auth.models import User
 from django.urls import reverse
+from users.models import Teacher
+
+# REF: READ https://docs.djangoproject.com/en/4.0/topics/db/models/
+class DayBlock(models.Model):
+
+    date_today = models.DateTimeField(default=timezone.now)
 
 
-class Teacher(models.Model):
-    class Weekday(models.TextChoices):
-        mon = "Monday", "Monday"
-        tue = "Tuesday", "Tuesday"
-        wed = "Wednesday", "Wednesday"
-        thu = "Thursday", "Thursday"
-        fri = "Friday", "Friday"
-        sun = "Sunday", "Sunday"
-
-    name = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
-    expertise = models.CharField(max_length=100)
-    assigned_day = models.CharField(max_length=10, choices=Weekday.choices)
-
-    def __str__(self):
-        return self.name
-
-
+# TODO: experiment with this instead
 class Session(models.Model):
     class Timeblock(models.TextChoices):
         A = "8:00-8:20", "8:00-8:20"
@@ -35,19 +24,18 @@ class Session(models.Model):
 
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
-
-    date = models.DateField()
+    date = models.DateField(default=timezone.now)
     timeblock = models.CharField(max_length=10, choices=Timeblock.choices)
-
-    # weekday = date_posted.datetime.strftime("%A")
-    # my_teacher = Teacher.objects.filter(assigned_day=weekday)
-    # my_email = my_teacher.owner.email
-    # {{ session.get_timeblock_display }} to display full text
+    weekday = models.CharField(max_length=10)
     helptype = models.CharField(max_length=50)
 
     @property
     def is_upcoming(self):
         return date.today() < self.date
+
+    @property
+    def get_weekday(self):
+        return self.date.strftime("%A")
 
     def __str__(self) -> str:
         return f"{self.student.username}: {self.date} ({self.timeblock})"
