@@ -60,7 +60,7 @@ class SessionDetailView(DetailView):
 # note: mixins should come before CreateView
 class SessionCreateView(LoginRequiredMixin, CreateView):
     model = Session
-    fields = ["date", "timeblock", "helptype"]
+    fields = ["date", "weekday", "timeblock", "helptype"]
 
     def form_valid(self, form):
         form.instance.student = self.request.user

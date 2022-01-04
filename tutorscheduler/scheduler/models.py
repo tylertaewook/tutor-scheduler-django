@@ -14,24 +14,46 @@ class DayBlock(models.Model):
 
 # TODO: experiment with this instead
 class Session(models.Model):
-    class Timeblock(models.TextChoices):
-        A = "8:00-8:20", "8:00-8:20"
-        B = "8:20-8:40", "8:20-8:40"
-        C = "8:40-9:00", "8:40-9:00"
-        D = "9:00-9:20", "9:00-9:20"
-        E = "9:20-9:40", "9:20-9:40"
-        F = "9:40-10:00", "9:40-10:00"
+    # class Timeblock(models.TextChoices):
+    #     A = "8:00-8:20", "8:00-8:20"
+    #     B = "8:20-8:40", "8:20-8:40"
+    #     C = "8:40-9:00", "8:40-9:00"
+    #     D = "9:00-9:20", "9:00-9:20"
+    #     E = "9:20-9:40", "9:20-9:40"
+    #     F = "9:40-10:00", "9:40-10:00"
+
+    TIMEBLOCK_CHOICES = (
+        ("A", "8:00-8:20"),
+        ("B", "8:20-8:40"),
+        ("C", "8:40-9:00"),
+        ("D", "9:00-9:20"),
+        ("E", "9:20-9:40"),
+        ("F", "9:40-10:00"),
+    )
+
+    WEEKDAY_CHOICES = (
+        ("MONDAY", "Monday"),
+        ("TUESDAY", "Tuesday"),
+        ("WEDNESDAY", "Wednesday"),
+        ("THURSDAY", "Thursday"),
+        ("FRIDAY", "Friday"),
+        ("SATURDAY", "Saturday"),
+        ("SUNDAY", "Sunday"),
+    )
 
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
     date = models.DateField(default=timezone.now)
-    timeblock = models.CharField(max_length=10, choices=Timeblock.choices)
-    weekday = models.CharField(max_length=10)
+    weekday = models.CharField(max_length=10, choices=WEEKDAY_CHOICES, default="MONDAY")
+    timeblock = models.CharField(max_length=10, choices=TIMEBLOCK_CHOICES, default="A")
     helptype = models.CharField(max_length=50)
+    # * whether to include these fields or not?
+    # course_name = models.CharField(max_length=30)
+    # course_teacher = models.CharField(max_length=30)
 
     @property
     def is_upcoming(self):
-        return date.today() < self.date
+        return date.today() <= self.date
 
     @property
     def get_weekday(self):
