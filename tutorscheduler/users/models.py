@@ -22,19 +22,21 @@ class Profile(models.Model):
 
 
 class Teacher(models.Model):
-    class Weekday(models.TextChoices):
-        # name, value, label
-        mon = 0, "Monday"
-        tue = 1, "Tuesday"
-        wed = 2, "Wednesday"
-        thu = 3, "Thursday"
-        fri = 4, "Friday"
-        sat = 5, "Saturday"
-        sun = 6, "Sunday"
+    WEEKDAY_CHOICES = (
+        ("MONDAY", "Monday"),
+        ("TUESDAY", "Tuesday"),
+        ("WEDNESDAY", "Wednesday"),
+        ("THURSDAY", "Thursday"),
+        ("FRIDAY", "Friday"),
+        ("SATURDAY", "Saturday"),
+        ("SUNDAY", "Sunday"),
+    )
 
     teacher = models.ForeignKey(User, on_delete=models.CASCADE)
     expertise = models.CharField(max_length=100)
-    assigned_day = models.CharField(max_length=10)
+    assigned_day = models.CharField(
+        max_length=10, choices=WEEKDAY_CHOICES, default="MONDAY"
+    )
 
     def __str__(self):
         return self.assigned_day
