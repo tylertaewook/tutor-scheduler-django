@@ -13,9 +13,6 @@ from django.views.generic import (
     DeleteView,
 )
 
-# TODO: setup o_auth to login with google feature
-# REF: https://www.section.io/engineering-education/django-google-oauth/
-
 
 def register(request):
     if request.method == "POST":

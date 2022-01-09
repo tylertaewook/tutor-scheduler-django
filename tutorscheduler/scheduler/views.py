@@ -69,7 +69,7 @@ class SessionCreateView(LoginRequiredMixin, CreateView):
 
 class SessionEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Session
-    fields = ["date", "timeblock", "helptype"]
+    fields = ["helptype"]
 
     def form_valid(self, form):
         form.instance.student = self.request.user
@@ -84,13 +84,17 @@ class SessionEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class SessionCancelView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Session
-    success_url = "/"
+    success_url = "/profile"
 
     def test_func(self):
         session = self.get_object()
         if self.request.user == session.student:
             return True
         return False
+
+    # for DeleteView Modal
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
 
 
 def home(request):
