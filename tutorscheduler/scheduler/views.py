@@ -3,6 +3,7 @@ from .models import Session
 from .forms import IssuesForm
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import (
     ListView,
     DetailView,
@@ -67,9 +68,13 @@ class SessionCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class SessionEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class SessionEditView(
+    SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, UpdateView
+):
     model = Session
     fields = ["helptype"]
+    success_url = "/profile"
+    success_message = "Session was updated successfully"
 
     def form_valid(self, form):
         form.instance.student = self.request.user
@@ -82,19 +87,19 @@ class SessionEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return False
 
 
-class SessionCancelView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class SessionCancelView(
+    SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, DeleteView
+):
     model = Session
     success_url = "/profile"
+    success_message = "Session was cancelled successfully"
+    # FIXME: success message not showing
 
     def test_func(self):
         session = self.get_object()
         if self.request.user == session.student:
             return True
         return False
-
-    # for DeleteView Modal
-    def get(self, request, *args, **kwargs):
-        return self.post(request, *args, **kwargs)
 
 
 def home(request):
