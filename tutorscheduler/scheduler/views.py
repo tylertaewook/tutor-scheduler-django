@@ -93,7 +93,7 @@ class SessionCancelView(
     model = Session
     success_url = "/profile"
     success_message = "Session was cancelled successfully"
-    # FIXME: success message not showing
+    # FIXME: success message not showing - eh maybe not necessary tho
 
     def test_func(self):
         session = self.get_object()

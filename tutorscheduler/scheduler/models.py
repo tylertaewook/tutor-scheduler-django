@@ -8,8 +8,7 @@ from users.models import Teacher
 
 # REF: READ https://docs.djangoproject.com/en/4.0/topics/db/models/
 class DayBlock(models.Model):
-
-    date_today = models.DateTimeField(default=timezone.now)
+    date = models.DateField(default=timezone.now)
 
 
 # TODO: experiment with this instead
@@ -40,7 +39,7 @@ class Session(models.Model):
     weekday = models.CharField(max_length=10, choices=WEEKDAY_CHOICES, default="MONDAY")
     timeblock = models.CharField(max_length=10, choices=TIMEBLOCK_CHOICES, default="A")
     helptype = models.CharField(max_length=50)
-    # * whether to include these fields or not?
+    # TODO: whether to include these fields or not?
     # course_name = models.CharField(max_length=30)
     # course_teacher = models.CharField(max_length=30)
 

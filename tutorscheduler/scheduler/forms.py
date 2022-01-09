@@ -1,5 +1,5 @@
 from django import forms
-from .models import Issue
+from .models import Issue, Session
 
 
 class IssuesForm(forms.ModelForm):
@@ -10,4 +10,3 @@ class IssuesForm(forms.ModelForm):
     class Meta:
         model = Issue
         fields = ["email", "issue", "user_agent"]
-
