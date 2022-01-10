@@ -6,11 +6,6 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from users.models import Teacher
 
-# REF: READ https://docs.djangoproject.com/en/4.0/topics/db/models/
-class DayBlock(models.Model):
-    date = models.DateField(default=timezone.now)
-    # onduty = models.OneToOneField(Teacher, on_delete=models.CASCADE)
-
 
 # TODO: experiment with this instead
 class Session(models.Model):
@@ -58,6 +53,19 @@ class Session(models.Model):
     def get_absolute_url(self):
         # returns a complete url string and let view handle the redirect
         return reverse("session-detail", kwargs={"pk": self.pk})
+
+
+# REF: READ https://docs.djangoproject.com/en/4.0/topics/db/models/
+class DayBlock(models.Model):
+    date = models.DateField(default=timezone.now)
+    onduty = models.OneToOneField(Teacher, on_delete=models.CASCADE, default="")
+    # allBlocks = Session.objects.filter(date=date)
+    # blockA = allBlocks.filter(timeblo)
+    # blockB = models.OneToOneField(Teacher, on_delete=models.CASCADE, default='')
+    # blockC = models.OneToOneField(Teacher, on_delete=models.CASCADE, default='')
+    # blockD = models.OneToOneField(Teacher, on_delete=models.CASCADE, default='')
+    # blockE = models.OneToOneField(Teacher, on_delete=models.CASCADE, default='')
+    # blockF = models.OneToOneField(Teacher, on_delete=models.CASCADE, default='')
 
 
 class Issue(models.Model):

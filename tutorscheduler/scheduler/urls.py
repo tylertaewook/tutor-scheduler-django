@@ -36,7 +36,7 @@ urlpatterns = [
     path(
         "sessions/new/<yyyy:date>/<str:timeblock>",
         SessionCreateView.as_view(),
-        name="session-create-date",
+        name="session-create-spec",
     ),
     path("sessions/<int:pk>/edit", SessionEditView.as_view(), name="session-edit"),
     path(

@@ -9,11 +9,19 @@
         </div>
         <h2><a class="article-title" href="#">{{ day.onduty }}</a></h2>
         <p class="article-content">{{ day.desc }}</p>
-        <button type="button" class="btn btn-outline-success btn-lg btn-block">8:00-8:20</button>
-        <button type="button" class="btn btn-secondary btn-lg btn-block" disabled>Booked</button>
-        <button type="button" class="btn btn-outline-success btn-lg btn-block">9:00-9:20</button>
-        <button type="button" class="btn btn-outline-success btn-lg btn-block">9:20-9:40</button>
-        <button type="button" class="btn btn-outline-success btn-lg btn-block">9:40-10:00</button>
+        <a class='btn btn-outline-success btn-lg btn-block'
+            href="{% url 'session-create-spec' day.date 'A' %}">8:00-8:20</a>
+        <a class='btn btn-outline-success btn-lg btn-block'
+            href="{% url 'session-create-spec' day.date 'B' %}">8:20-8:40</a>
+        <a class='btn btn-outline-success btn-lg btn-block'
+            href="{% url 'session-create-spec' day.date 'C' %}">8:40-9:00</a>
+        <a class='btn btn-outline-success btn-lg btn-block'
+            href="{% url 'session-create-spec' day.date 'D' %}">9:00-9:20</a>
+        <a class='btn btn-outline-success btn-lg btn-block'
+            href="{% url 'session-create-spec' day.date 'E' %}">9:20-9:40</a>
+        <a class='btn btn-outline-success btn-lg btn-block'
+            href="{% url 'session-create-spec' day.date 'F' %}">9:40-10:00</a>
+        <!-- <button type="button" class="btn btn-secondary btn-lg btn-block" disabled>Booked</button> -->
     </div>
 </article>
 {% endfor %}

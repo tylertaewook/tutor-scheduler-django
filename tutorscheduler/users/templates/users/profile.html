@@ -61,10 +61,10 @@
     {% for session in user_sessions %}
     {% if session.is_upcoming %}
     <div class="card bg-light mb-3" style="width: 18rem;">
-        <div class="card-header">{{ session.date|date:"F d [l]" }}</div>
+        <div class="card-header">{{ session.date|date:"F d, l" }}</div>
         <div class="card-body">
             <h5 class="card-title">{{ session.get_timeblock_display }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{ session.date|date:"[l]" }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{{ session.course_name }} ({{ session.course_teacher }})</h6>
             <p class="card-text">{{ session.helptype }}</p>
             <a class='btn btn-outline-secondary btn-small mt-1 mb-1' href="{% url 'session-edit' session.id %}">Edit</a>
             <a class='btn btn-outline-danger btn-small mt-1 mb-1'
@@ -82,10 +82,10 @@
     {% for session in user_sessions %}
     {% if session.is_upcoming is False %}
     <div class="card border-dark mb-3" style="width: 18rem;">
-        <div class="card-header">{{ session.date|date:"F d - l" }}</div>
+        <div class="card-header">{{ session.date|date:"F d, l" }}</div>
         <div class="card-body text-dark">
             <h5 class="card-title">{{ session.get_timeblock_display }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Mr. Brett Hand</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{{ session.course_name }} ({{ session.course_teacher }})</h6>
             <p class="card-text">{{ session.helptype }}</p>
         </div>
     </div>

@@ -1,6 +1,6 @@
+import datetime
 from django.shortcuts import render, redirect
 from .models import Session, DayBlock
-from datetime import datetime
 from .forms import IssuesForm, SessionForm
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -16,30 +16,35 @@ from django.views.generic import (
 days = [
     {
         "day": "Monday",
+        "date": "2022-01-10",
         "onduty": "Mr. Brett Hand",
         "dept": "English",
         "desc": "English/History term papers",
     },
     {
         "day": "Tuesday",
+        "date": "2022-01-11",
         "onduty": "Ms. Reagan Ridley",
         "dept": "Physics",
         "desc": "Physics Lab reports",
     },
     {
         "day": "Wednesday",
+        "date": "2022-01-12",
         "onduty": "Dr. Andre Lee",
         "dept": "Chemistry",
         "desc": "Chemistry Lab reports",
     },
     {
         "day": "Thursday",
+        "date": "2022-01-13",
         "onduty": "Mr. Magic Myc",
         "dept": "English",
         "desc": "English essays",
     },
     {
         "day": "Friday",
+        "date": "2022-01-14",
         "onduty": "Mr. Glenn Dolphman",
         "dept": "History",
         "desc": "History essays",
@@ -65,6 +70,7 @@ class SessionCreateView(LoginRequiredMixin, CreateView):
     # fields = ["date", "timeblock", "course_name", "course_teacher", "helptype"]
     form_class = SessionForm
     template_name = "scheduler/session_form.html"
+    success_url = "/profile"
 
     def form_valid(self, form):
         form.instance.student = self.request.user
@@ -81,7 +87,7 @@ class SessionEditView(
     SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, UpdateView
 ):
     model = Session
-    fields = ["helptype"]
+    fields = ["course_name", "course_teacher", "helptype"]
     success_url = "/profile"
     success_message = "Session was updated successfully"
 
@@ -101,8 +107,6 @@ class SessionCancelView(
 ):
     model = Session
     success_url = "/profile"
-    success_message = "Session was cancelled successfully"
-    # FIXME: success message not showing - eh maybe not necessary tho
 
     def test_func(self):
         session = self.get_object()
