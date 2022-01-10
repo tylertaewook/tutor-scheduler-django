@@ -3,6 +3,9 @@
 <a href="https://github.com/tylertaewook/tutor-scheduler-django/blob/main/LICENSE"><img alt="License: MIT" src="https://black.readthedocs.io/en/stable/_static/license.svg"></a>
 <a href="https://github.com/tylertaewook/tutor-scheduler-django"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/tylertaewook/tutor-scheduler-django.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/tylertaewook/tutor-scheduler-django/alerts/)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/tylertaewook/tutor-scheduler-django.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/tylertaewook/tutor-scheduler-django/context:javascript)
+
 
 A Django web app for scheduling peer tutor sessions in Kent School's Academic Resource Center; WIP
 
