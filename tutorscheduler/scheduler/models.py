@@ -9,6 +9,7 @@ from users.models import Teacher
 # REF: READ https://docs.djangoproject.com/en/4.0/topics/db/models/
 class DayBlock(models.Model):
     date = models.DateField(default=timezone.now)
+    onduty = models.OneToOneField(Teacher, on_delete=models.CASCADE)
 
 
 # TODO: experiment with this instead

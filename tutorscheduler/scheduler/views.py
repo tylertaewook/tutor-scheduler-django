@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Session
+from .models import Session, DayBlock
+from datetime import datetime
 from .forms import IssuesForm
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -66,6 +67,12 @@ class SessionCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.student = self.request.user
         return super().form_valid(form)
+
+    def get_initial(self):
+        return {
+            "date": self.kwargs.get("date"),
+            "timeblock": self.kwargs.get("timeblock"),
+        }
 
 
 class SessionEditView(
