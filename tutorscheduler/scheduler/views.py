@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Session, DayBlock
 from datetime import datetime
-from .forms import IssuesForm
+from .forms import IssuesForm, SessionForm
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -61,8 +61,10 @@ class SessionDetailView(DetailView):
 
 # note: mixins should come before CreateView
 class SessionCreateView(LoginRequiredMixin, CreateView):
-    model = Session
-    fields = ["date", "weekday", "timeblock", "helptype"]
+    # model = Session
+    # fields = ["date", "timeblock", "course_name", "course_teacher", "helptype"]
+    form_class = SessionForm
+    template_name = "scheduler/session_form.html"
 
     def form_valid(self, form):
         form.instance.student = self.request.user

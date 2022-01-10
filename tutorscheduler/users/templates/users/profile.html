@@ -40,7 +40,7 @@
 
 {% if user|has_group:"teacher" %}
 <div class="content-section">
-    <h3>My Sessions</h3>
+    <h3>All Sessions</h3>
     {% for session in teacher_sessions %}
     <article class="media content-section">
         <img class='rounded-circle article-img' src="{{ session.student.profile.image.url }}">
@@ -64,7 +64,7 @@
         <div class="card-header">{{ session.date|date:"F d [l]" }}</div>
         <div class="card-body">
             <h5 class="card-title">{{ session.get_timeblock_display }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{ session.weekday }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{{ session.date|date:"[l]" }}</h6>
             <p class="card-text">{{ session.helptype }}</p>
             <a class='btn btn-outline-secondary btn-small mt-1 mb-1' href="{% url 'session-edit' session.id %}">Edit</a>
             <a class='btn btn-outline-danger btn-small mt-1 mb-1'

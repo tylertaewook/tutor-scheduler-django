@@ -9,7 +9,7 @@ from users.models import Teacher
 # REF: READ https://docs.djangoproject.com/en/4.0/topics/db/models/
 class DayBlock(models.Model):
     date = models.DateField(default=timezone.now)
-    onduty = models.OneToOneField(Teacher, on_delete=models.CASCADE)
+    # onduty = models.OneToOneField(Teacher, on_delete=models.CASCADE)
 
 
 # TODO: experiment with this instead
@@ -24,25 +24,25 @@ class Session(models.Model):
         ("F", "9:40-10:00"),
     )
 
-    WEEKDAY_CHOICES = (
-        ("MONDAY", "Monday"),
-        ("TUESDAY", "Tuesday"),
-        ("WEDNESDAY", "Wednesday"),
-        ("THURSDAY", "Thursday"),
-        ("FRIDAY", "Friday"),
-        ("SATURDAY", "Saturday"),
-        ("SUNDAY", "Sunday"),
-    )
+    # WEEKDAY_CHOICES = (
+    #     ("MONDAY", "Monday"),
+    #     ("TUESDAY", "Tuesday"),
+    #     ("WEDNESDAY", "Wednesday"),
+    #     ("THURSDAY", "Thursday"),
+    #     ("FRIDAY", "Friday"),
+    #     ("SATURDAY", "Saturday"),
+    #     ("SUNDAY", "Sunday"),
+    # )
 
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
     date = models.DateField(default=timezone.now)
-    weekday = models.CharField(max_length=10, choices=WEEKDAY_CHOICES, default="MONDAY")
+    # weekday = models.CharField(max_length=10, choices=WEEKDAY_CHOICES, default="MONDAY")
     timeblock = models.CharField(max_length=10, choices=TIMEBLOCK_CHOICES, default="A")
-    helptype = models.CharField(max_length=50)
-    # TODO: whether to include these fields or not?
-    # course_name = models.CharField(max_length=30)
-    # course_teacher = models.CharField(max_length=30)
+
+    course_name = models.CharField(max_length=30, default="")
+    course_teacher = models.CharField(max_length=30, default="")
+    helptype = models.CharField(max_length=50, default="")
 
     @property
     def is_upcoming(self):

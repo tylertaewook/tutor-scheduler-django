@@ -31,7 +31,7 @@ def profile(request):
         "user_group": "Teacher" if user.groups.filter(name="teacher") else "Student",
         "user_sessions": Session.objects.filter(student=user),
         "teacher": Teacher.objects.filter(teacher=user).first(),
-        "teacher_sessions": Session.objects.filter(weekday="MONDAY"),
+        "teacher_sessions": Session.objects.all(),
     }
     return render(request, "users/profile.html", context)
 
