@@ -16,13 +16,13 @@ class SessionForm(forms.ModelForm):
     date = forms.DateField(disabled=True)
     # timeblock = forms.CharField(disabled=True)
     course_name = forms.CharField(
-        widget=forms.TextInput(attrs={"placeholder": "i.e. English 3"})
+        widget=forms.TextInput(attrs={"placeholder": "i.e. English 3"}), required=False
     )
     course_teacher = forms.CharField(
-        widget=forms.TextInput(attrs={"placeholder": "i.e. Mr. Kim"})
+        widget=forms.TextInput(attrs={"placeholder": "i.e. Mr. Kim"}), required=False
     )
     helptype = forms.CharField(
-        widget=forms.TextInput(attrs={"placeholder": "i.e. Term paper"})
+        widget=forms.TextInput(attrs={"placeholder": "i.e. Term paper"}), required=False
     )
 
     class Meta:
