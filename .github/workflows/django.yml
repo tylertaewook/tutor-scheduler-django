@@ -23,6 +23,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install Dependencies
       run: |
+        conda init zsh
         conda create --name tutor --file conda-req.txt
         conda activate tutor
     - name: Run Tests
