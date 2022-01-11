@@ -1,5 +1,6 @@
 # tutor-scheduler-django
 <!-- <a href="https://github.com/tyletaewook/tutor-scheduler-django/actions"><img alt="Actions Status" src="https://github.com/tylertaewook/tutor-scheduler-django/workflows/Test/badge.svg"></a> -->
+[![Django CI](https://github.com/tylertaewook/tutor-scheduler-django/actions/workflows/django.yml/badge.svg)](https://github.com/tylertaewook/tutor-scheduler-django/actions/workflows/django.yml)
 <a href="https://github.com/tylertaewook/tutor-scheduler-django/blob/main/LICENSE"><img alt="License: MIT" src="https://black.readthedocs.io/en/stable/_static/license.svg"></a>
 <a href="https://github.com/tylertaewook/tutor-scheduler-django"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 
