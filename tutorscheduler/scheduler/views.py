@@ -81,6 +81,11 @@ class SessionCreateView(LoginRequiredMixin, CreateView):
             "date": self.kwargs.get("date"),
             "timeblock": self.kwargs.get("timeblock"),
         }
+    
+    # def get_form_kwargs(self, *args, **kwargs):  # forms.py def clean()
+    #     kwargs = super(SessionCreateView, self).get_form_kwargs(*args, **kwargs)
+    #     kwargs["user"] = self.request.user
+    #     return kwargs
 
 
 class SessionEditView(
@@ -102,9 +107,7 @@ class SessionEditView(
         return False
 
 
-class SessionCancelView(
-    SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, DeleteView
-):
+class SessionCancelView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Session
     success_url = "/profile"
 

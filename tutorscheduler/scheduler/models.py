@@ -39,9 +39,13 @@ class Session(models.Model):
     course_teacher = models.CharField(max_length=30, default="")
     helptype = models.CharField(max_length=50, default="")
 
-    @property
+    # @property
     def is_upcoming(self):
         return date.today() <= self.date
+
+    is_upcoming.admin_order_field = "date"
+    is_upcoming.boolean = True
+    is_upcoming.short_description = "Session in the future?"
 
     @property
     def get_weekday(self):
@@ -58,7 +62,7 @@ class Session(models.Model):
 # REF: READ https://docs.djangoproject.com/en/4.0/topics/db/models/
 class DayBlock(models.Model):
     date = models.DateField(default=timezone.now)
-    onduty = models.OneToOneField(Teacher, on_delete=models.CASCADE, default="")
+    # onduty = models.OneToOneField(Teacher, on_delete=models.CASCADE, default="")
     # allBlocks = Session.objects.filter(date=date)
     # blockA = allBlocks.filter(timeblo)
     # blockB = models.OneToOneField(Teacher, on_delete=models.CASCADE, default='')

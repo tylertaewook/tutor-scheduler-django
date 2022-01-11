@@ -28,3 +28,12 @@ class SessionForm(forms.ModelForm):
     class Meta:
         model = Session
         fields = ["date", "timeblock", "course_name", "course_teacher", "helptype"]
+
+    # REF: https://stackoverflow.com/questions/23690450/django-prevent-duplicates-for-users
+    # def clean(self):
+    #     # if Session.objects.filter(student=self.user, date=self.date).exists():
+    #     #     raise forms.ValidationError(
+    #     #         "Cannot schedule more than one session on a single day!"
+    #     #     )
+    #     if Session.objects.filter(date=self.date, timeblock=self.timeblock).exists():
+    #         raise forms.ValidationError("That date & time is already booked!")
