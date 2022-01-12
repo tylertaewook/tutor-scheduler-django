@@ -11,6 +11,8 @@ A Django web app for scheduling tutor sessions in Kent School's Academic Resourc
 
 License: MIT
 
+![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/0ea6468a-5d30-4f81-b5d1-6caf16768a36/Screen_Shot_2022-01-12_at_11.02.43_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220112%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220112T140305Z&X-Amz-Expires=86400&X-Amz-Signature=e052c3ceebe22ae04929ee5fbba4f3418835107820346be1f6ad04116c9ef60c&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen%2520Shot%25202022-01-12%2520at%252011.02.43%2520PM.png%22&x-id=GetObject)
+
 ### Dev Roadmap
 You can track my dev progress [HERE](https://tylertaewook.notion.site/9e2a8e4711124483ab5d502b6a5d5880?v=e15a4d94a56640069d47edbe33319070)
 
