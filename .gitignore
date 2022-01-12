@@ -1,8 +1,12 @@
+<<<<<<< Updated upstream
 # Byte-compiled / optimized / DLL files
+=======
+# byte-compiled / optimized / DLL files
+>>>>>>> Stashed changes
 __pycache__/
 *.py[cod]
-*$py.class
 
+<<<<<<< Updated upstream
 # C extensions
 *.so
 
@@ -127,3 +131,32 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+=======
+# tests and coverage
+*.pytest_cache
+.coverage
+
+# database & logs
+*.db
+*.sqlite3
+*.log
+
+# venv
+env
+venv
+
+# other
+.DS_Store
+
+# javascript
+package-lock.json
+
+staticfiles/*
+!staticfiles/.gitkeep 
+.vscode/symbols.json
+
+apps/static/assets/node_modules
+apps/static/assets/yarn.lock
+apps/static/assets/.temp
+
+>>>>>>> Stashed changes
