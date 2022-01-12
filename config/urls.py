@@ -8,7 +8,7 @@ from django.views.generic import TemplateView
 # from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    # path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path("", include("scheduler.urls")),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"

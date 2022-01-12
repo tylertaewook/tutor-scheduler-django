@@ -122,11 +122,11 @@ class SessionCancelView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def home(request):
     context = {"days": days}
-    return render(request, "scheduler/home.html", context)
+    return render(request, "pages/home.html", context)
 
 
 def about(request):
-    return render(request, "scheduler/about.html")
+    return render(request, "pages/about.html")
 
 
 def sessions(request):
