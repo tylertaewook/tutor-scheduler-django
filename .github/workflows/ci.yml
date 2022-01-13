@@ -68,7 +68,9 @@ jobs:
           pip install -r requirements/local.txt
 
       - name: Test with pytest
-        run: pytest
+        run: |
+          coverage run tests.py
+          coverage xml
 
       - name: "Upload coverage to Codecov"
         uses: codecov/codecov-action@v2
