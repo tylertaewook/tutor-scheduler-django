@@ -10,6 +10,7 @@
     {{ form|crispy }}
     <div class="control-group">
       <div class="controls">
+        <a class="btn btn-outline-secondary" href="{% url 'users:detail' request.user.username  %}">Go Back</a>
         <button type="submit" class="btn btn-primary">Update</button>
       </div>
     </div>

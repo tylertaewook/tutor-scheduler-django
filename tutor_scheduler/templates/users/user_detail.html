@@ -15,10 +15,8 @@
           <p class="text-secondary">{{ object.email }}</p>
       </div>
   </div>
-  <a href="{% url 'users:update' %}">Edit my profile</a>
-  <a href="{% url 'account_email' %}">Edit my email</a>
-  <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
-  <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
+  <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">Edit Profile</a>
+  <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">Edit Email</a>
 </div>
 
 <div class="content-section">
@@ -34,10 +32,6 @@
           <a class='btn btn-outline-secondary btn-small mt-1 mb-1' href="{% url 'session-edit' session.id %}">Edit</a>
           <a class='btn btn-outline-danger btn-small mt-1 mb-1'
               href="{% url 'session-cancel' session.id %}">Cancel</a>
-          <button type="button" class="btn btn-outline-danger btn-small mt-1 mb-1" data-toggle="modal"
-              data-target="#sessionDeleteModal">
-              Modal Cancel
-          </button>
       </div>
   </div>
   {% endif %}
@@ -58,31 +52,4 @@
   {% endfor %}
 </div>
 
-<div class="container">
-
-  <div class="row">
-    <div class="col-sm-12">
-
-      <h2>{{ object.username }}</h2>
-      {% if object.name %}
-        <p>{{ object.name }}</p>
-      {% endif %}
-    </div>
-  </div>
-
-{% if object == request.user %}
-<!-- Action buttons -->
-<div class="row">
-
-  <div class="col-sm-12">
-    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
-    <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
-    <!-- Your Stuff: Custom user template urls -->
-  </div>
-
-</div>
-<!-- End Action buttons -->
-{% endif %}
-
-</div>
 {% endblock content %}

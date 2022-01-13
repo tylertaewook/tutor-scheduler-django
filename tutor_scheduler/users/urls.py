@@ -7,13 +7,10 @@ from tutor_scheduler.users.views import (
     user_update_view,
 )
 
-from . import views as user_views
-
 app_name = "users"
 urlpatterns = [
     path("~redirect/", view=user_redirect_view, name="redirect"),
     path("~update/", view=user_update_view, name="update"),
-    path("profile/", user_views.profile, name="profile"),
     path("<str:username>/", view=user_detail_view, name="detail"),
     path(
         "login/",
@@ -25,6 +22,4 @@ urlpatterns = [
         auth_views.LogoutView.as_view(template_name="users/logout.html"),
         name="logout",
     ),
-    # ! seems like ~update/ will replace this path
-    # path("edit-profile/", user_views.editprofile, name="editprofile"),
 ]

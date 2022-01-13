@@ -8,7 +8,7 @@
             <h2>Are you sure you want to cancel this session?</h2>
         </fieldset>
         <div class="form-group">
-            <a class="btn btn-outline-secondary" href="{% url 'profile' %}">Go Back</a>
+            <a class="btn btn-outline-secondary" href="{% url 'users:detail' request.user.username  %}">Go Back</a>
             <button class="btn btn-outline-danger" type="submit">Yes, Cancel</button>
         </div>
     </form>
