@@ -1,8 +1,9 @@
 from datetime import datetime
 
 from django.urls import path, register_converter
-from scheduler import views
-from scheduler.views import (
+
+from tutor_scheduler.scheduler import views
+from tutor_scheduler.scheduler.views import (
     SessionCancelView,
     SessionCreateView,
     SessionDetailView,
