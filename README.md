@@ -3,6 +3,7 @@
 A Django web app for scheduling tutor sessions in Kent School's Academic Resource Center(ARC)
 
 [![Django CI](https://github.com/tylertaewook/tutor-scheduler-django/actions/workflows/ci.yml/badge.svg)](https://github.com/tylertaewook/tutor-scheduler-django/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/tylertaewook/tutor-scheduler-django/branch/main/graph/badge.svg?token=KJUJHJTKVW)](https://codecov.io/gh/tylertaewook/tutor-scheduler-django)
 <a href="https://github.com/tylertaewook/tutor-scheduler-django/blob/main/LICENSE"><img alt="License: MIT" src="https://black.readthedocs.io/en/stable/_static/license.svg"></a>
 <a href="https://github.com/tylertaewook/tutor-scheduler-django"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 
