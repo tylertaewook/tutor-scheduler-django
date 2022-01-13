@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static %}
+{% load has_group %}
+{% block title %}User: {{ user.username }}{% endblock %}
+
+{% block content %}
+
+<!-- Modal -->
+<div class="modal fade" id="sessionDeleteModal" tabindex="-1" role="dialog" aria-labelledby="sessionDeleteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cancel Session</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to cancel this session?
+                <!-- {% include "scheduler/session_confirm_delete.html" %} -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button class="btn btn-outline-danger" type="submit">Yes, Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <h2>My Profile</h2>
+    <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <div class="media-body">
+            <h2 class="account-heading">{{ user.username }}</h2>
+            <p class="text-secondary">{{ user_group }}</p>
+            <p class="text-secondary">{{ user.email }}</p>
+        </div>
+    </div>
+    <a href="{% url 'editprofile' %}">Edit my profile</a>
+</div>
+
+{% if user|has_group:"teacher" %}
+<div class="content-section">
+    <h3>All Sessions</h3>
+    {% for session in teacher_sessions %}
+    <article class="media content-section">
+        <img class='rounded-circle article-img' src="{{ session.student.profile.image.url }}">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">{{ session.student }}</a>
+                <small class="text-muted">{{ session.date|date:"F d - l" }}</small>
+            </div>
+            <h4><a class="article-title" href="#">{{ session.timeblock }}</a></h4>
+            <p class="article-content">{{ session.helptype }}</p>
+        </div>
+    </article>
+    {% endfor %}
+</div>
+{% else %}
+<div class="content-section">
+    <h3>Upcoming Sessions</h3>
+    {% for session in user_sessions %}
+    {% if session.is_upcoming %}
+    <div class="card bg-light mb-3" style="width: 18rem;">
+        <div class="card-header">{{ session.date|date:"F d, l" }}</div>
+        <div class="card-body">
+            <h5 class="card-title">{{ session.get_timeblock_display }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ session.course_name }} ({{ session.course_teacher }})</h6>
+            <p class="card-text">{{ session.helptype }}</p>
+            <a class='btn btn-outline-secondary btn-small mt-1 mb-1' href="{% url 'session-edit' session.id %}">Edit</a>
+            <a class='btn btn-outline-danger btn-small mt-1 mb-1'
+                href="{% url 'session-cancel' session.id %}">Cancel</a>
+            <button type="button" class="btn btn-outline-danger btn-small mt-1 mb-1" data-toggle="modal"
+                data-target="#sessionDeleteModal">
+                Modal Cancel
+            </button>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    <h3>Past Sessions</h3>
+    {% for session in user_sessions %}
+    {% if session.is_upcoming is False %}
+    <div class="card border-dark mb-3" style="width: 18rem;">
+        <div class="card-header">{{ session.date|date:"F d, l" }}</div>
+        <div class="card-body text-dark">
+            <h5 class="card-title">{{ session.get_timeblock_display }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ session.course_name }} ({{ session.course_teacher }})</h6>
+            <p class="card-text">{{ session.helptype }}</p>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock content %}

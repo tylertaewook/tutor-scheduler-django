@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect, render
+from django.urls import reverse
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -72,7 +73,6 @@ class SessionCreateView(LoginRequiredMixin, CreateView):
     # fields = ["date", "timeblock", "course_name", "course_teacher", "helptype"]
     form_class = SessionForm
     template_name = "scheduler/session_form.html"
-    success_url = "/profile"
 
     def form_valid(self, form):
         form.instance.student = self.request.user
@@ -83,6 +83,9 @@ class SessionCreateView(LoginRequiredMixin, CreateView):
             "date": self.kwargs.get("date"),
             "timeblock": self.kwargs.get("timeblock"),
         }
+
+    def get_success_url(self):
+        return reverse("users:detail", args=[self.request.user.username])
 
     # def get_form_kwargs(self, *args, **kwargs):  # forms.py def clean()
     #     kwargs = super(SessionCreateView, self).get_form_kwargs(*args, **kwargs)
@@ -95,7 +98,7 @@ class SessionEditView(
 ):
     model = Session
     fields = ["course_name", "course_teacher", "helptype"]
-    success_url = "/profile"
+    # success_url = "/users/<str:username>/"
     success_message = "Session was updated successfully"
 
     def form_valid(self, form):
@@ -108,16 +111,21 @@ class SessionEditView(
             return True
         return False
 
+    def get_success_url(self):
+        return reverse("users:detail", args=[self.request.user.username])
+
 
 class SessionCancelView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Session
-    success_url = "/profile"
 
     def test_func(self):
         session = self.get_object()
         if self.request.user == session.student:
             return True
         return False
+
+    def get_success_url(self):
+        return reverse("users:detail", args=[self.request.user.username])
 
 
 def home(request):

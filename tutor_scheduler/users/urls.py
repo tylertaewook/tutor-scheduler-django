@@ -13,6 +13,7 @@ app_name = "users"
 urlpatterns = [
     path("~redirect/", view=user_redirect_view, name="redirect"),
     path("~update/", view=user_update_view, name="update"),
+    path("profile/", user_views.profile, name="profile"),
     path("<str:username>/", view=user_detail_view, name="detail"),
     path(
         "login/",
@@ -24,7 +25,6 @@ urlpatterns = [
         auth_views.LogoutView.as_view(template_name="users/logout.html"),
         name="logout",
     ),
-    path("profile/", user_views.profile, name="profile"),
     # ! seems like ~update/ will replace this path
     # path("edit-profile/", user_views.editprofile, name="editprofile"),
 ]
