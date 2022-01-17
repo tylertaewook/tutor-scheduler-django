@@ -23,11 +23,9 @@ def generate_daylist():
     today = datetime.date.today()
     for i in range(7):
         day = {}
-        curr_day = today + datetime.timedelta(days=i + 2)
+        curr_day = today + datetime.timedelta(days=i)
         weekday = curr_day.strftime("%A").upper()
-        teacher = Teacher.objects.filter(
-            assigned_day="TUESDAY"
-        ).first()  # ! NonType occurs here
+        teacher = Teacher.objects.filter(assigned_day=weekday).first()
         day["date"] = str(curr_day)
         day["day"] = weekday
         day["onduty"] = teacher.get_name()
