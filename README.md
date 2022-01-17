@@ -15,7 +15,7 @@ A Django web app for scheduling tutor sessions in [Kent School's Academic Resour
 ### Features:
 - User Authentication: **all-auth**'s social account w/ Email verification
 - Tutor Session **CRUD** (Create, Read, Update, Delete)
-- User profile page with tutor sessions' history
+- User profile page with tutor sessions' history of varying user groups (students, tutors, admins)
 - Testing: **pytest + codecov + Factoryboy**
 - Depolyed using **docker-compose and heroku**
 
