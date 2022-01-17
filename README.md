@@ -1,6 +1,6 @@
 # Tutor Scheduler
 
-A Django web app for scheduling tutor sessions in [Kent School's Academic Resource Center](https://libguides.kent-school.edu/library); Deployed using docker-compose and heroku
+A Django web app for scheduling tutor sessions in [Kent School's Academic Resource Center](https://libguides.kent-school.edu/library)
 
 [![Django CI](https://github.com/tylertaewook/tutor-scheduler-django/actions/workflows/ci.yml/badge.svg)](https://github.com/tylertaewook/tutor-scheduler-django/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/tylertaewook/tutor-scheduler-django/branch/main/graph/badge.svg?token=KJUJHJTKVW)](https://codecov.io/gh/tylertaewook/tutor-scheduler-django)
