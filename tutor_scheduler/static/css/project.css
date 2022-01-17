@@ -1,5 +1,3 @@
-/* These styles are generated from project.scss. */
-
 body {
   background: #fafafa;
   color: #132946;
@@ -32,9 +30,9 @@ ul {
 
 .content-section {
   background: #ffffff;
-  padding: 10px 20px;
+  padding: 10px 30px;
   border: 1px solid #dddddd;
-  border-radius: 3px;
+  border-radius: 25px;
   margin-bottom: 20px;
 }
 

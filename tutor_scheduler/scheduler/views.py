@@ -1,4 +1,4 @@
-# import datetime
+import datetime
 
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -13,46 +13,46 @@ from django.views.generic import (
     UpdateView,
 )
 
-from .forms import IssuesForm, SessionForm
-from .models import Session
+from tutor_scheduler.scheduler.forms import IssuesForm, SessionForm
+from tutor_scheduler.scheduler.models import Session
+from tutor_scheduler.users.models import Teacher
 
-days = [
-    {
-        "day": "Monday",
-        "date": "2022-01-10",
-        "onduty": "Mr. Brett Hand",
-        "dept": "English",
-        "desc": "English/History term papers",
-    },
-    {
-        "day": "Tuesday",
-        "date": "2022-01-11",
-        "onduty": "Ms. Reagan Ridley",
-        "dept": "Physics",
-        "desc": "Physics Lab reports",
-    },
-    {
-        "day": "Wednesday",
-        "date": "2022-01-12",
-        "onduty": "Dr. Andre Lee",
-        "dept": "Chemistry",
-        "desc": "Chemistry Lab reports",
-    },
-    {
-        "day": "Thursday",
-        "date": "2022-01-13",
-        "onduty": "Mr. Magic Myc",
-        "dept": "English",
-        "desc": "English essays",
-    },
-    {
-        "day": "Friday",
-        "date": "2022-01-14",
-        "onduty": "Mr. Glenn Dolphman",
-        "dept": "History",
-        "desc": "History essays",
-    },
-]
+
+def generate_daylist():
+    daylist = []
+    today = datetime.date.today()
+    for i in range(7):
+        day = {}
+        curr_day = today + datetime.timedelta(days=i + 2)
+        weekday = curr_day.strftime("%A").upper()
+        teacher = Teacher.objects.filter(
+            assigned_day="TUESDAY"
+        ).first()  # ! NonType occurs here
+        day["date"] = str(curr_day)
+        day["day"] = weekday
+        day["onduty"] = teacher.get_name()
+        day["dept"] = teacher.dept
+        day["A_booked"] = (
+            Session.objects.filter(date=str(curr_day)).filter(timeblock="A").exists()
+        )
+        day["B_booked"] = (
+            Session.objects.filter(date=str(curr_day)).filter(timeblock="B").exists()
+        )
+        day["C_booked"] = (
+            Session.objects.filter(date=str(curr_day)).filter(timeblock="C").exists()
+        )
+        day["D_booked"] = (
+            Session.objects.filter(date=str(curr_day)).filter(timeblock="D").exists()
+        )
+        day["E_booked"] = (
+            Session.objects.filter(date=str(curr_day)).filter(timeblock="E").exists()
+        )
+        day["F_booked"] = (
+            Session.objects.filter(date=str(curr_day)).filter(timeblock="F").exists()
+        )
+        if day["day"] != "SATURDAY":  # Writing lab doesn't open on Saturday
+            daylist.append(day)
+    return daylist
 
 
 class SessionListView(ListView):
@@ -129,7 +129,7 @@ class SessionCancelView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 def home(request):
-    context = {"days": days}
+    context = {"days": generate_daylist()}
     return render(request, "pages/home.html", context)
 
 
