@@ -1,6 +1,6 @@
 # Tutor Scheduler
 
-A Django web app for scheduling tutor sessions in [Kent School's Academic Resource Center](https://libguides.kent-school.edu/library)
+A Django web app for scheduling peer tutor sessions in Boarding School's Academic Resource Center
 
 [![Django CI](https://github.com/tylertaewook/tutor-scheduler-django/actions/workflows/ci.yml/badge.svg)](https://github.com/tylertaewook/tutor-scheduler-django/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/tylertaewook/tutor-scheduler-django/branch/main/graph/badge.svg?token=KJUJHJTKVW)](https://codecov.io/gh/tylertaewook/tutor-scheduler-django)
