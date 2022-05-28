@@ -2,7 +2,7 @@
 
 A Django web app for scheduling peer tutor sessions in Boarding School's Academic Resource Center
 
-[![Django CI](https://github.com/tylertaewook/tutor-scheduler-django/actions/workflows/ci.yml/badge.svg)](https://github.com/tylertaewook/tutor-scheduler-django/actions/workflows/ci.yml)
+<!-- [![Django CI](https://github.com/tylertaewook/tutor-scheduler-django/actions/workflows/ci.yml/badge.svg)](https://github.com/tylertaewook/tutor-scheduler-django/actions/workflows/ci.yml) -->
 [![codecov](https://codecov.io/gh/tylertaewook/tutor-scheduler-django/branch/main/graph/badge.svg?token=KJUJHJTKVW)](https://codecov.io/gh/tylertaewook/tutor-scheduler-django)
 <a href="https://github.com/tylertaewook/tutor-scheduler-django/blob/main/LICENSE"><img alt="License: MIT" src="https://black.readthedocs.io/en/stable/_static/license.svg"></a>
 <a href="https://github.com/tylertaewook/tutor-scheduler-django"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
@@ -13,9 +13,9 @@ A Django web app for scheduling peer tutor sessions in Boarding School's Academi
 ![UI](https://i.imgur.com/lXDvSMS.png)
 
 ### Features:
-- User Authentication: **all-auth**'s social account w/ Email verification
-- Tutor Session **CRUD** (Create, Read, Update, Delete)
-- User profile page with tutor sessions' history of varying user groups (students, tutors, admins)
+- User Authentication: custom user model w/ Email verification
+- Tutor Session **CRUD** (Create, Read, Update, Delete): Students can sign up, edit, or delete tutor sessions. Tutors can keep track of upcoming sessions. Teachers have access to admin panel and can refer students to sessions
+- Profile pages with upcoming and past sessions depending on user groups; Students and tutors can view past and upcoming tutor sessions.
 - Testing: **pytest + codecov + Factoryboy**
 - Depolyed using **docker-compose and heroku**
 
