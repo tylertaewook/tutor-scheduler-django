@@ -73,7 +73,7 @@ jobs:
           coverage xml
 
       - name: "Upload coverage to Codecov"
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
         with:
           fail_ci_if_error: true
           token: 0ba5f322-f3b3-4b26-a651-6f2030b666a0 # not required for public repos
